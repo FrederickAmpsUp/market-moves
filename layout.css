@@ -14,12 +14,6 @@ body {
   margin: 0;
 }
 
-#capital {
-  display: flex;
-  align-items: center;
-  margin-right: var(--space);
-}
-
 #main {
   flex-grow: 8;
   overflow-y: auto;
@@ -27,10 +21,22 @@ body {
 
 #info {
   flex-grow: 4;
+  flex-shrink: 1;
 }
 
 #controls {
   flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.control-info {
+  height: fit-content;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  margin-right: var(--space);
 }
 
 .section {

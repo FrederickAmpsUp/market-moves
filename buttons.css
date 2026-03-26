@@ -3,6 +3,9 @@
   border: none;
   border-radius: var(--round);
 
+  font-family: "Quantico";
+  font-size: 2em;
+
   flex-grow: 1;
 
   cursor: pointer;
@@ -13,6 +16,10 @@
 
 .btn.up {
   background-color: green;
+}
+
+.btn.ntrl {
+  background-color: #0096ff;
 }
 
 .btn.up::before {

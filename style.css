@@ -12,6 +12,12 @@
   background-color: var(--background-secondary);
 }
 
+dialog {
+  background-color: var(--background-primary);
+  font-family: "Quantico";
+  color: var(--foreground-primary);
+}
+
 #info {
   background-color: var(--background-secondary);
 
@@ -68,7 +74,7 @@ h1 .small {
 }
 
 .function-plot path.line {
-  stroke-width: 8px;
+  stroke-width: 4px;
   stroke: var(--foreground-primary);
   opacity: 100%;
 }

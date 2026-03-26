@@ -1,0 +1,20 @@
+/* The 'Overlay' that only exists when the dialog is open */
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+  /* Animation goes here */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* When the dialog is actually open, fade the backdrop in */
+dialog[open]::backdrop {
+  opacity: 1;
+}
+
+dialog {
+  border: none;
+  border-radius: 8px;
+  padding: 0; /* Let the internal div handle layout */
+  /* Centering is automatic with <dialog>! */
+}
