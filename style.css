@@ -1,0 +1,105 @@
+:root {
+  --background-primary: #223;
+  --background-secondary: #111;
+  --foreground-primary: #ccc;
+  --foreground-secondary: #888;
+
+  --space: 12px;
+  --round: 24px;
+}
+
+#content {
+  background-color: var(--background-secondary);
+}
+
+#info {
+  background-color: var(--background-secondary);
+
+  border-radius: var(--round);
+}
+
+#footer {
+  color: var(--foreground-secondary);
+  font-family: "Quantico";
+}
+
+.section {
+  background-color: var(--background-primary);
+  color: var(--foreground-primary);
+
+  border-radius: var(--round);
+  border-width: 0;
+
+  font-family: "Quantico";
+}
+
+.control {
+  aspect-ratio: 2 / 1;
+
+  background-color: var(--background-secondary);
+  border-radius: var(--round);
+}
+
+.control-info {
+  font-family: "Quantico"
+}
+
+.control-info {
+  text-align: center;
+}
+
+.control-info.title {
+  font-size: 2em;
+}
+
+.control-info.data {
+  font-size: 1.5em;
+}
+
+.main-icon {
+  height: 2em;
+  margin-right: 18px;
+  vertical-align: middle;
+}
+
+h1 .small {
+  font-size: 0.5em;
+  color: var(--foreground-secondary);
+}
+
+.function-plot path.line {
+  stroke-width: 8px;
+  stroke: var(--foreground-primary);
+  opacity: 100%;
+}
+
+.function-plot .tick line {
+  stroke-width: 3px;
+  stroke: var(--foreground-secondary);
+  filter: brightness(0.4);
+  opacity: 100%;
+}
+
+.function-plot .title {
+  font-family: "Quantico";
+  stroke-width: 0;
+  fill: var(--foreground-primary);
+}
+
+.function-plot g .axis-label {
+  font-family: "Quantico";
+  font-size: 1.5em;
+  stroke-width: 0;
+  fill: var(--foreground-primary);
+}
+
+h1 {
+  margin: 0;
+  line-height: 1;
+  padding: 0;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--foreground-secondary) var(--background-secondary);
+}

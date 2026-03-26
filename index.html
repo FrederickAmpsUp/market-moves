@@ -5,8 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets/market-moves.ico" type="image/x-icon">
     <title>Market Moves</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="buttons.css">
   </head>
   <body>
-    <h1>Market Moves</h1>
+    <div id="content" class="flex vertical">
+      <div id="header" class="section flex horizontal">
+        <div><h1><img src="assets/market-moves-transparent.png" class="main-icon">Market Moves <span class="small">v0.1</span></h1></div>
+        <div id="capital" style="margin-left: auto"><h1>$<span data-bind="capital"></span></h1></div>
+      </div>
+
+      <div id="main" class="section flex vertical">
+        <div id="info" class="panel flex horizontal">
+          <div id="supply-graph"></div>
+        </div>
+        
+        <div id="controls" class="panel flex horizontal">
+          <div class="control flex horizontal">
+            <button class="btn down" onclick="decrement_qs()"></button>
+            <div class="control-info flex vertical">
+              <div class="control-info title">
+                Quantity<br>Supplied
+              </div>
+              <div class="control-info data" id="quantity-supplied">
+                <span data-bind="qs" contenteditable></span>cars/day
+              </div>
+              <div class="control-info data" id="qs-range">
+                1-<span data-bind="qs_max"></span>
+              </div>
+            </div>
+            <button class="btn up" onclick="increment_qs()"></button>
+          </div>
+          <div class="control flex horizontal">
+            Button 2
+          </div>
+        </div>
+
+      </div>
+
+      <div id="footer" class="section">
+        Programming by Frederick Ziola. Game design by Frederick Ziola and Stone Sweezea.
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/function-plot@1.21.0/dist/function-plot.min.js"></script>
+    <script src="/index.js"></script>
   </body>
 </html>

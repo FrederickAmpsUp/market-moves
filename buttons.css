@@ -1,0 +1,41 @@
+.btn {
+  height: 100%;
+  border: none;
+  border-radius: var(--round);
+
+  flex-grow: 1;
+
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn.up {
+  background-color: green;
+}
+
+.btn.up::before {
+  content: "▲";
+}
+
+.btn.down {
+  background-color: red;
+}
+
+.btn.down::before {
+  content: "▼";
+}
+
+.btn::before {
+  color: var(--foreground-primary);
+  font-size: 3vh;
+}
+
+.btn:hover {
+  filter: brightness(0.8);
+}
+
+.btn:active {
+  filter: brightness(0.6);
+}
