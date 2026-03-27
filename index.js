@@ -445,7 +445,7 @@ update_button_states = () => {
 };
 
 update_display_values = () => {
-  state.utilization = state.qs / state.qs_max;
+  state.utilization = 100 * state.qs / state.qs_max;
 
   state.current_unit_cost = total_cost(state.qs) / Math.max(1, state.qs);
   state.unit_margin = state.market_price - state.current_unit_cost;
