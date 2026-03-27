@@ -21,6 +21,8 @@
         <div class="page-header"><h1><img src="assets/market-moves-transparent.png" class="main-icon">Market Moves <span class="small">v0.1</span></h1></div>
         <div class="page-header" style="margin-left: auto"><h1>Day <span data-bind="days"></span></h1></div>
         <div class="page-header"><h1>$<span data-bind="capital"></span></h1></div>
+        <div class="page-header"><h2>$<span data-bind="profit"></span>/day</h2></div>
+        <div class="page-header"><h1><span data-bind="market_share"></span>% Market Share</h1></div>
       </div>
 
       <div id="main" class="section flex vertical">
@@ -28,21 +30,87 @@
           <div class="panel flex horizontal">
             <div id="quantity-graph"></div>
             <div id="profit-graph"></div>
-            <div id="history-graph"></div>
+            <div id="share-graph"></div>
           </div>
-          <div class="panel flex horizontal">
-            <div>
-              Fixed Cost:<br>
-              Base Cost:<br>
-              Marginal Cost:<br>
-              Current Market Price:
+          <div class="dashboard flex horizontal" style="gap: 15px; align-items: stretch;">
+
+            <div class="panel flex vertical" style="flex: 1; border-left: 4px solid #60a5fa;">
+              <h4 style="margin: 0 0 10px 0; color: #60a5fa; text-transform: uppercase; font-size: 0.8em;">Market Strategy</h4>
+              
+              <div class="flex horizontal" style="justify-content: space-between; margin-bottom: 5px;">
+                <span>Your Price:</span>
+                <span style="color: #60a5fa; font-weight: bold;">
+                  $<span data-bind="market_price" contenteditable="true"></span>
+                </span>
+              </div>
+
+              <div class="flex horizontal" style="justify-content: space-between; margin-bottom: 5px;">
+                <span>Market Share:</span>
+                <span><span data-bind="market_share"></span>%</span>
+              </div>
+
+              <hr style="border: 0; border-top: 1px solid #333; margin: 10px 0;">
+
+              <div class="flex horizontal" style="justify-content: space-between; opacity: 0.8; font-size: 0.9em;">
+                <span>Competitor Price:</span>
+                <span>$<span data-bind="competitor_price"></span></span>
+              </div>
+
+              <div class="flex horizontal" style="justify-content: space-between; opacity: 0.8; font-size: 0.9em;">
+                <span>Brand Desirability:</span>
+                <span><span data-bind="player_desirability"></span>x</span>
+              </div>
             </div>
-            <div>
-              $<span data-bind="fixed_cost"></span><br>
-              $<span data-bind="base_cost"></span><br>
-              $<span data-bind="marginal_cost"></span><br>
-              $<span data-bind="market_price"></span>
+
+            <div class="panel flex vertical" style="flex: 1; border-left: 4px solid #facc15;">
+              <h4 style="margin: 0 0 10px 0; color: #facc15; text-transform: uppercase; font-size: 0.8em;">Factory Ops</h4>
+
+              <div class="flex horizontal" style="justify-content: space-between; margin-bottom: 5px;">
+                <span>Daily Output:</span>
+                <span style="font-weight: bold;">
+                  <span data-bind="qs" contenteditable="true"></span> / <span data-bind="qs_max"></span>
+                </span>
+              </div>
+
+              <div class="flex horizontal" style="justify-content: space-between; margin-bottom: 5px;">
+                <span>Utilization:</span>
+                <span><span data-bind="utilization"></span>%</span>
+              </div>
+
+              <hr style="border: 0; border-top: 1px solid #333; margin: 10px 0;">
+
+              <div class="flex horizontal" style="justify-content: space-between; opacity: 0.8; font-size: 0.9em;">
+                <span>Fixed Overhead:</span>
+                <span>$<span data-bind="fixed_cost"></span></span>
+              </div>
             </div>
+
+            <div class="panel flex vertical" style="flex: 1; border-left: 4px solid #f87171;">
+              <h4 style="margin: 0 0 10px 0; color: #f87171; text-transform: uppercase; font-size: 0.8em;">Efficiency</h4>
+
+              <div class="flex horizontal" style="justify-content: space-between; margin-bottom: 5px;">
+                <span>Avg. Cost/Car:</span>
+                <span style="color: #f87171; font-weight: bold;">$<span data-bind="current_unit_cost"></span></span>
+              </div>
+
+              <div class="flex horizontal" style="justify-content: space-between; margin-bottom: 5px;">
+                <span>Profit/Car:</span>
+                <span style="color: #4ade80;">$<span data-bind="unit_margin"></span></span>
+              </div>
+
+              <hr style="border: 0; border-top: 1px solid #333; margin: 10px 0;">
+
+              <div class="flex horizontal" style="justify-content: space-between; opacity: 0.8; font-size: 0.9em;">
+                <span>Base Material:</span>
+                <span>$<span data-bind="base_cost"></span></span>
+              </div>
+
+              <div class="flex horizontal" style="justify-content: space-between; opacity: 0.8; font-size: 0.9em;">
+                <span>Marginal Cost:</span>
+                <span>$<span data-bind="marginal_cost"></span></span>
+              </div>
+            </div>
+
           </div>
         </div>
         
@@ -62,6 +130,10 @@
             </div>
             <button class="btn up" onclick="increment_qs()"></button>
           </div>
+          <div class="control flex vertical" style="justify-content: center">
+            <div class="control-info title">Market Price</div>
+            <div class="control-info data">$<span data-bind="market_price" contenteditable></span></div>
+          </div>
           <div class="control flex horizontal">
             <button class="btn ntrl flex vertical" onclick="upgrade_factory()">
               <div>Upgrade Factory</div>
@@ -76,19 +148,34 @@
               <div><small>Reduces Base Cost by 1%</small></div>
             </button>
           </div>
+          <div class="control flex horizontal">
+            <button class="btn ntrl flex vertical" onclick="better_cars()">
+              <div>Better Cars</div>
+              <div>$<span data-bind="better_cars_cost"></span></div>
+              <div><small>Increases Base Cost by 1% and<br>desirability by 15%</small></div>
+            </button>
+          </div>
+          <div class="control flex horizontal">
+            <button class="btn ntrl flex vertical" onclick="bigger_factory()">
+              <div>Bigger Factory</div>
+              <div>$<span data-bind="bigger_factory_cost"></span></div>
+              <div><small>Increases Fixed Cost and<br>production capacity by 50%</small></div>
+            </button>
+          </div>
         </div>
       </div>
 
       <dialog id="dialog">
         <div class="flex vertical">
           <h2>Market Moves</h2>
-          <p>This is a hard game.</p>
+          <p>Welcome to Market Moves! In this game,<br>you will control production and research in order<br>to edge out the competition and become the<br>best car manufacturer!</p>
           <button class="btn ntrl" onclick="document.querySelector('#dialog').close()">Ok</button>
         </div>
       </dialog>
 
-      <div id="footer" class="section">
-        Programming by Frederick Ziola. Game design by Frederick Ziola and Stone Sweezea.
+      <div id="footer" class="section flex horizontal">
+        <p>Programming by Frederick Ziola. Game design by Frederick Ziola and Stone Sweezea.</p>
+        <button id="reset" class="btn negative" style="margin-left: auto; max-width: fit-content; padding-left: var(--space); padding-right: var(--space)" onclick="reset_game_msg()">RESET</button>
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/function-plot@1.21.0/dist/function-plot.min.js"></script>

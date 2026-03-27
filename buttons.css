@@ -22,6 +22,10 @@
   background-color: #0096ff;
 }
 
+.btn.negative {
+  background-color: #f87171;
+}
+
 .btn.up::before {
   content: "▲";
 }
@@ -43,6 +47,7 @@
   filter: brightness(0.8);
 }
 
+.btn.is-disabled,
 .btn:active {
   filter: brightness(0.6);
 }

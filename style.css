@@ -40,8 +40,6 @@ dialog {
 }
 
 .control {
-  aspect-ratio: 2 / 1;
-
   background-color: var(--background-secondary);
   border-radius: var(--round);
 }
@@ -75,7 +73,6 @@ h1 .small {
 
 .function-plot path.line {
   stroke-width: 4px;
-  stroke: var(--foreground-primary);
   opacity: 100%;
 }
 
