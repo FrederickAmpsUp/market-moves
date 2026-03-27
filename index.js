@@ -396,15 +396,15 @@ modal = (title, message) => {
 run_competitor_ai = () => {
 
   // 1. Reactive Pricing: They want to be within 5% of your 'Value'
-  const player_value = state.market_price * state.player_desirability;
-  const comp_value = state.competitor_price * state.competitor_desirability;
+  const player_value = state.player_desirability / state.market_price;
+  const comp_value = state.competitor_desirability / state.competitor_price;
 
   console.log(player_value, comp_value);
 
   if (comp_value > player_value * 1.05) {
-    state.competitor_price -= 20; // You're a better deal, they drop price to compete
+    state.competitor_price += 10;
   } else if (comp_value < player_value * 0.95) {
-    state.competitor_price += 10; // They are undercutting you too much, they raise price for profit
+    state.competitor_price -= 10;
   }
 
   // 2. Simulated Growth: If they have > 40% share, they 'reinvest'
