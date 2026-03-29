@@ -108,7 +108,7 @@ const init_data_binds = () => {
 document.addEventListener('blur', (e) => {
   const prop = e.target.dataset.bind;
   if (prop) {
-    const newValue = parseInt(e.target.textContent);
+    const newValue = numeral(e.target.textContent).value();
     
     if (newValue && !isNaN(newValue)) {
       state[prop] = newValue;
